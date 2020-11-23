@@ -1,0 +1,10 @@
+# Project exclude paths
+/cmake-build-release/
+**/CMakeFiles/
+CMakeCache.txt
+Makefile
+**/*.a
+**/Makefile
+tests/run_tests
+**/*.cmake
+**/*.cbp
