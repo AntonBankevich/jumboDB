@@ -2,7 +2,6 @@
 // Created by anton on 17.07.2020.
 //
 #define _GLIBCXX_PARALLEL
-#include "error_correction.hpp"
 #include "dbg_construction.hpp"
 #include "dbg_disjointigs.hpp"
 #include "minimizer_selection.hpp"
@@ -13,9 +12,7 @@
 #include "common/dir_utils.hpp"
 #include "common/cl_parser.hpp"
 #include "common/logging.hpp"
-#include "crude_correct.hpp"
 #include "hash_utils.hpp"
-#include "initial_correction.hpp"
 #include <iostream>
 #include <queue>
 #include <omp.h>
@@ -273,12 +270,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    if(parser.getCheck("initial-correct")) {
-        size_t threshold = std::stoull(parser.getValue("cov-threshold"));
-        initialCorrect(dbg, logger, dir / "correction.txt", dir / "corrected.fasta", reads_lib, {parser.getValue("reference")}, threshold,
-                       threads, w + k - 1);
-    }
-
     if(parser.getValue("dbg") == "none") {
         logger.info() << "Printing graph to fasta file " << (dir / "graph.fasta") << std::endl;
         std::ofstream edges;
@@ -330,22 +321,12 @@ int main(int argc, char **argv) {
         os.close();
     }
 
-    if (parser.getCheck("crude-correct")) {
-        size_t threshold = std::__cxx11::stoull(parser.getValue("cov-threshold"));
-        CrudeCorrect(logger, dbg, dir, w, reads_lib, threads, threshold);
-    }
 
     if (!parser.getListValue("align").empty()) {
         io::Library align_lib = oneline::initialize<std::experimental::filesystem::path>(parser.getListValue("align"));
         alignLib(logger, dbg, align_lib, hasher, w, dir, threads);
     }
 
-//    findTips(logger, dbg, threads);
-    if(parser.getCheck("correct")) {
-        io::SeqReader reader(reads_lib);
-        error_correction::correctSequences(dbg, logger, reader.begin(), reader.end(),
-                                           dir / "corrected.fasta", dir / "bad.fasta", threads, w + hasher.k - 1);
-    }
     if (parser.getValue("segments") != "none") {
         logger.info() << "Drawing components" << std::endl;
         io::SeqReader segs(parser.getValue("segments"));
