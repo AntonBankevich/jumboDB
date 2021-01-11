@@ -29,8 +29,10 @@ void CLParser::parseCL(const std::vector <std::string> &args) {
             isstart = false;
             if (s[1] == '-') {
                 name = s.substr(2, s.size() - 2);
-            } else {
+            } else if (s.size() == 2 && short_to_long.count(s[1]) == 1) {
                 name = short_to_long[s[1]];
+            } else {
+                name = "";
             }
             if (checks.count(name)) {
                 checks[name] = true;

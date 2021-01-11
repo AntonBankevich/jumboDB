@@ -1613,7 +1613,7 @@ public:
         }
     }
 
-    void printGFA(std::ostream &out) const {
+    void printGFA(std::ostream &out, bool calculate_coverage) const {
         out << "H\tVN:Z:1.0" << std::endl;
         size_t cnt = 0;
         for(const auto &it : v) {
@@ -1622,7 +1622,11 @@ public:
                 VERIFY(!vertex.seq.empty());
                 for(const Edge<htype> & edge : vertex.getOutgoing()) {
                     if(vertex.isCanonical(edge)) {
-                        out << "S\t" << vertex.edgeId(edge) << "\t" << vertex.seq << edge.seq << std::endl;
+                        if(calculate_coverage)
+                            out << "S\t" << vertex.edgeId(edge) << "\t" << vertex.seq << edge.seq
+                                << "\tKC:i:" << edge.intCov() << std::endl;
+                        else
+                            out << "S\t" << vertex.edgeId(edge) << "\t" << vertex.seq << edge.seq << std::endl;
                     }
                 }
             }
