@@ -81,7 +81,7 @@ public:
         return double(cov) / size();
     }
 
-    double intCov() const {
+    size_t intCov() const {
         return cov;
     }
 
