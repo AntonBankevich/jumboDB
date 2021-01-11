@@ -16,7 +16,7 @@ JumboDB uses a combination of multiple known techniques such as bloom filters, s
 JumboDB constructs de Bruijn graph of human genome from HiFi dataset with coverage 25 within 4 hours and using 32 threads on any value of k from 250 to 7000.
 For error-corrected reads only 30 minutes is enough.
 
-For installation and running instructions please refer to [manual](manual.md)
+For installation and running instructions please refer to [manual](manual.md).
 
 License
 -------
@@ -27,6 +27,6 @@ This tool is distributed under a BSD license. See the [LICENSE file](LICENSE) fo
 Credits
 -------
 
-This tool is developed by Anton Bankevich in [Pavel Pevzner's lab at UCSD](http://cseweb.ucsd.edu/~ppevzner/)
+This tool is developed by Anton Bankevich in [Pavel Pevzner's lab at UCSD](http://cseweb.ucsd.edu/~ppevzner/).
 Pease cite [this paper](https://www.biorxiv.org/content/10.1101/2020.12.10.420448v1) if you use jumboDB in your work.
 
