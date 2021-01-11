@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include <sstream>
 #include <string>
 #include <algorithm>
 
@@ -35,6 +36,17 @@ static inline std::string trim(std::string s) {
 static inline std::string & compress_inplace(std::string &s) {
     s.erase(std::unique(s.begin(), s.end()), s.end());
     return s;
+}
+
+inline std::string join(const std::string &s, const std::vector<std::string> &arr) {
+    if(arr.empty())
+        return "";
+    std::stringstream ss;
+    ss << arr[0];
+    for(size_t i = 1; i < arr.size(); i++) {
+        ss << s << arr[i];
+    }
+    return ss.str();
 }
 
 inline std::vector<std::string> split(const std::string &s, const std::string &delimiter) {

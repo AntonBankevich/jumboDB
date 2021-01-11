@@ -68,7 +68,7 @@ To run de Bruijn graph construction use the following command line
  --compress Compress all homolopymers in reads.
     
 `--coverage
-    Calculate edge coverage of edges in the constructed de Bruijn graph.
+    Calculate edge coverage of edges in the constructed de Bruijn graph. The coverage is then printed as KC option in gfa files and is printed in edge labels in dot files.
 
 Output of de Bruijn graph construction
 =================
@@ -76,7 +76,7 @@ Output of de Bruijn graph construction
 All output files are stored in <output_dir> `, which is set by the user.
 
 -   `<output_dir>/graph.fasta` sequences of all edges of de Bruijn graph in fasta format
--   `<output_dir>/graph.gfa` sequences of all edges of de Bruijn graph in gfa format. Note that gfa format is ill suited for de Bruijn graph storage since it does not represent some vertices such as vertices with indegree 2 and out degree 0. 
+-   `<output_dir>/graph.gfa` sequences of all edges of de Bruijn graph in gfa format. When --coverage option is used, k-mer coverage of each edge (total number of occurences of all k-mers from an edge) is stored as additional parameter KC. Note that gfa format is ill suited for de Bruijn graph storage since it does not represent some vertices such as vertices with indegree 2 and out degree 0.
 -   `<output_dir>/graph.dot` sequences of all edges of de Bruijn graph
 -   `<output_dir>/dbg.log` log file for the run
 
