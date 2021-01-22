@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+JumboDB tool for de Bruijn graph construction
+==============
 
-You can use the [editor on GitHub](https://github.com/AntonBankevich/jumboDB/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Version: 1.0.1
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is jumboDB tool for fast de Bruijn graph construction from long sequences (reads or genomes) with very low error rate.
+JumboDB is not a genome assembler by itself but rather a subroutine that translates a set of reads into compressed de Bruijn graph.
+JumboDB a part of LJA (La Jolla Assembler) genome assembler under development that is designed for HiFi read assembly.
+Unique feature of jumboDB is that it can construct de Bruijn graphs for any value of k.
+Moreover increasing k does not lead to significant increase in time and space requirements.
+Primarily time and space performance depend on the size of the resulting graph (total length of all edges in nucleotides).
 
-### Markdown
+JumboDB uses a combination of multiple known techniques such as bloom filters, sparse de Bruijn graphs and rolling hashs.
+JumboDB constructs de Bruijn graph of human genome from HiFi dataset with coverage 25 within 4 hours and using 32 threads on any value of k from 250 to 7000.
+For error-corrected reads only 30 minutes is enough.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Credits
+-------
 
-```markdown
-Syntax highlighted code block
+This tool is developed by Anton Bankevich in [Pavel Pevzner's lab at UCSD](http://cseweb.ucsd.edu/~ppevzner/).
+Pease cite [this paper](https://www.biorxiv.org/content/10.1101/2020.12.10.420448v1) if you use jumboDB in your work.
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AntonBankevich/jumboDB/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
